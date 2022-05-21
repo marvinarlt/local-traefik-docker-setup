@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  traefik:
+    container_name: "traefik"
+    image: "traefik:v2.6"
+    restart: "always"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/etc/localtime:/etc/localtime"
+      - "./docker/cert:/etc/cert"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./docker/traefik/config.yml:/etc/traefik/traefik.yml"
+      - "./docker/traefik/dynamic.yml:/etc/traefik/dynamic.yml"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.traefik-dashboard.entrypoints=websecure"
+      - "traefik.http.routers.traefik-dashboard.rule=Host(`traefik.docker.local`)"
+      - "traefik.http.routers.traefik-dashboard.service=api@internal"
+      - "traefik.http.routers.traefik-dashboard.tls=true"
+networks:
+  default:
+    external:
+      name: "proxy"

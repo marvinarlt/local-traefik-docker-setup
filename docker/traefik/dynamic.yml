@@ -1,0 +1,21 @@
+http:
+  middlewares:
+    secureHeaders:
+      headers:
+        sslRedirect: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 31536000
+tls:
+  options:
+    default:
+      minVersion: VersionTLS12
+  certificates:
+    - certFile: "/etc/cert/traefik.crt"
+      keyFile: "/etc/cert/traefik.key"
+  stores:
+    default:
+      defaultCertificate:
+        certFile: "/etc/cert/traefik.crt"
+        keyFile: "/etc/cert/traefik.key"
