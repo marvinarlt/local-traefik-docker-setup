@@ -1,2 +1,2 @@
-docker/cert/traefik.cert
+docker/cert/traefik.crt
 docker/cert/traefik.key

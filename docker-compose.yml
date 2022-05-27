@@ -22,5 +22,5 @@ services:
       - "traefik.http.routers.traefik-dashboard.tls=true"
 networks:
   default:
-    external:
-      name: "proxy"
+    name: "proxy"
+    external: true
