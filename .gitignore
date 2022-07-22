@@ -1,2 +1,1 @@
-docker/cert/traefik.crt
-docker/cert/traefik.key
+.env
