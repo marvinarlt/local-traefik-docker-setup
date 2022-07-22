@@ -9,17 +9,17 @@ services:
       - "443:443"
     volumes:
       - "/etc/localtime:/etc/localtime"
-      - "./docker/cert:/etc/cert"
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./docker/cert:/etc/cert"
       - "./docker/traefik/config.yml:/etc/traefik/traefik.yml"
       - "./docker/traefik/dynamic.yml:/etc/traefik/dynamic.yml"
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
-      - "traefik.http.routers.traefik-dashboard.entrypoints=websecure"
-      - "traefik.http.routers.traefik-dashboard.rule=Host(`traefik.docker.local`)"
-      - "traefik.http.routers.traefik-dashboard.service=api@internal"
-      - "traefik.http.routers.traefik-dashboard.tls=true"
+      - "traefik.http.routers.${ROUTER_NAME}.entrypoints=websecure"
+      - "traefik.http.routers.${ROUTER_NAME}.rule=Host(`${HOST_NAME}`)"
+      - "traefik.http.routers.${ROUTER_NAME}.service=api@internal"
+      - "traefik.http.routers.${ROUTER_NAME}.tls=true"
 networks:
   default:
     name: "proxy"
