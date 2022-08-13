@@ -88,8 +88,8 @@ I named the network `proxy`. If you want to use a different name, you also need 
 ```
 networks:
   default:
-    external:
-      name: "<network-name>"
+    name: "<network-name>"
+    external: true
 ```
 
 For every new service that should use traefik, you need to add this code snippet above to your docker-compose.yml. Otherwise docker has no access to the traefik network.
